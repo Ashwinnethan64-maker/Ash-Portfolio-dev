@@ -535,7 +535,8 @@ export default function Home() {
               "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png",
               "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png",
               "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png",
-              "https://i.postimg.cc/KYR6Tghr/Screenshot-2025-11-26-184410.png"
+              "https://i.postimg.cc/KYR6Tghr/Screenshot-2025-11-26-184410.png",
+              "https://i.postimg.cc/SsLtZhbc/Code-Sprint.png"
             ]} 
           />
         </div>
