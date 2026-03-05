@@ -27,7 +27,7 @@ export default function Home() {
     { id: 'status', name: 'System Status: ONLINE', color: '#22c55e', animate: true },
     { id: 'internship', name: 'Available for Internship', color: '#00f3ff' }
   ];
-  
+
   const form = useForm({
     resolver: zodResolver(insertMessageSchema),
     defaultValues: {
@@ -39,7 +39,7 @@ export default function Home() {
 
   const onSubmit = (data: any) => {
     setIsSubmitting(true);
-    
+
     emailjs.send(
       'service_x08b4vh',
       'template_gr3m1qe',
@@ -51,24 +51,24 @@ export default function Home() {
       },
       'dhbIsX5kyNPUd1xWb'
     )
-    .then(() => {
-      toast({
-        title: "Transmission Received",
-        description: "Your message has been securely sent. I'll get back to you soon.",
+      .then(() => {
+        toast({
+          title: "Transmission Received",
+          description: "Your message has been securely sent. I'll get back to you soon.",
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        console.error('EmailJS Error:', error);
+        toast({
+          title: "Transmission Failed",
+          description: "There was an error sending your message. Please try again later.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      form.reset();
-    })
-    .catch((error) => {
-      console.error('EmailJS Error:', error);
-      toast({
-        title: "Transmission Failed",
-        description: "There was an error sending your message. Please try again later.",
-        variant: "destructive",
-      });
-    })
-    .finally(() => {
-      setIsSubmitting(false);
-    });
   };
 
   const education = [
@@ -196,7 +196,7 @@ export default function Home() {
               Cybersecurity Student | Aspiring Analyst | Ethical Hacker
             </p>
             <p className="mb-8 text-muted-foreground max-w-lg">
-              Passionate about securing digital frontiers, ethical hacking, and network defense. 
+              Passionate about securing digital frontiers, ethical hacking, and network defense.
               Based in Mangaluru, India.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -208,7 +208,7 @@ export default function Home() {
               </CyberButton>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -218,9 +218,9 @@ export default function Home() {
             <Terminal />
           </motion.div>
         </div>
-        
+
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2 text-primary"
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
@@ -235,24 +235,24 @@ export default function Home() {
       <section id="about" className="py-24 bg-muted/30 border-y border-white/5 relative">
         <div className="container mx-auto px-6">
           <SectionHeading title="About Me" subtitle="Initializing user profile..." align="center" />
-          
+
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 relative group">
               {/* Profile Image */}
               <div className="aspect-square rounded-2xl bg-secondary relative overflow-hidden border border-white/10 group-hover:border-primary/50 transition-colors duration-500">
-                <img 
-                  src="https://i.postimg.cc/cJTSQJ2B/Whats-App-Image-2025-11-23-at-17-49-21-647fa574.jpg" 
-                  alt="Ashwin Nethan" 
+                <img
+                  src="https://i.postimg.cc/cJTSQJ2B/Whats-App-Image-2025-11-23-at-17-49-21-647fa574.jpg"
+                  alt="Ashwin Nethan"
                   className="object-cover w-full h-full opacity-80 grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-colors duration-500" />
-                
+
                 {/* Cyber overlay elements */}
                 <div className="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2 border-primary/50 rounded-tr-xl group-hover:border-primary transition-colors duration-500" />
                 <div className="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2 border-primary/50 rounded-bl-xl group-hover:border-primary transition-colors duration-500" />
               </div>
             </div>
-            
+
             <div className="order-1 md:order-2">
               <h3 className="text-2xl font-bold mb-6 text-white">Exploring the Digital Frontier</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -261,16 +261,16 @@ export default function Home() {
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Currently pursuing my B.Tech, I am actively seeking internships and opportunities to apply my knowledge in real-world scenarios. My focus spans from network defense to offensive security strategies, always adhering to ethical standards.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded border border-white/5 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 group cursor-default"
                 >
                   <h4 className="text-primary font-mono text-xl mb-1 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">Active</h4>
                   <span className="text-xs text-muted-foreground uppercase tracking-widest">Learner Status</span>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="bg-secondary/40 p-4 rounded border border-white/5 hover:border-primary/50 hover:bg-secondary/60 transition-all duration-300 group cursor-default"
                 >
@@ -288,10 +288,10 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 blur-3xl rounded-full translate-x-1/2" />
         <div className="container mx-auto px-6 relative z-10">
           <SectionHeading title="Education" subtitle="Academic credentials loaded" />
-          
+
           <div className="space-y-8 max-w-4xl mx-auto">
             {education.map((edu, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -319,7 +319,7 @@ export default function Home() {
       <section id="experience" className="py-24 bg-muted/30 border-y border-white/5">
         <div className="container mx-auto px-6">
           <SectionHeading title="Experience" subtitle="Practical application logs" align="right" />
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
               <div className="sticky top-24">
@@ -332,7 +332,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="md:col-span-2 space-y-6">
               {[
                 "Conducted network security assessments using industry-standard tools.",
@@ -341,7 +341,7 @@ export default function Home() {
                 "Explored SIEM tools for log analysis and incident detection.",
                 "Developed scripts for automating basic security tasks."
               ].map((item, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -363,7 +363,7 @@ export default function Home() {
       <section id="skills" className="py-24 relative">
         <div className="container mx-auto px-6">
           <SectionHeading title="Skills & Arsenal" subtitle="Capabilities matrix" align="center" />
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, idx) => (
               <motion.div
@@ -379,7 +379,7 @@ export default function Home() {
                     {category.title}
                   </h3>
                 </div>
-                
+
                 <div className="space-y-6">
                   {category.skills.map((skill, sIdx) => (
                     <div key={sIdx} className="space-y-2">
@@ -408,7 +408,7 @@ export default function Home() {
       <section id="projects" className="py-24 bg-muted/30 border-y border-white/5">
         <div className="container mx-auto px-6">
           <SectionHeading title="Featured Projects" subtitle="Operational deployments" />
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <motion.div
@@ -424,8 +424,8 @@ export default function Home() {
                 }}
               >
                 <div className="h-48 bg-black relative overflow-hidden">
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center opacity-50 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 transition-transform duration-700" 
+                  <div
+                    className="absolute inset-0 bg-cover bg-center opacity-50 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 transition-transform duration-700"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
@@ -442,9 +442,9 @@ export default function Home() {
                     {project.desc}
                   </p>
                   <div className="flex gap-2">
-                    <CyberButton 
-                      size="sm" 
-                      variant="outline" 
+                    <CyberButton
+                      size="sm"
+                      variant="outline"
                       className="w-full group/btn"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -457,9 +457,9 @@ export default function Home() {
                     >
                       View Link <span className="ml-2 transition-transform duration-300 group-hover/btn:translate-x-1">→</span>
                     </CyberButton>
-                    <CyberButton 
-                      size="sm" 
-                      variant="ghost" 
+                    <CyberButton
+                      size="sm"
+                      variant="ghost"
                       className="w-auto px-3"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -484,9 +484,9 @@ export default function Home() {
               <DialogTitle className="sr-only">{selectedProject.title}</DialogTitle>
               <DialogDescription className="sr-only">{selectedProject.subtitle}</DialogDescription>
               <div className="h-64 bg-black relative">
-                <img 
-                  src={selectedProject.image} 
-                  alt={selectedProject.title} 
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
                   className="w-full h-full object-cover opacity-60"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
@@ -527,17 +527,35 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <SectionHeading title="Certifications" subtitle="Validated credentials" align="center" />
         </div>
-        
+
         <div className="mt-12">
-          <ImageAutoSlider 
+          <ImageAutoSlider
             images={[
               "https://i.postimg.cc/6ptR3jX5/Screenshot-2026-01-15-122227.png",
               "https://i.postimg.cc/VLc0GG5W/Screenshot-2025-08-06-193320.png",
               "https://i.postimg.cc/65954D89/Screenshot-2025-11-25-134905.png",
               "https://i.postimg.cc/sDDsg7Nk/Screenshot-2026-01-09-130845.png",
               "https://i.postimg.cc/KYR6Tghr/Screenshot-2025-11-26-184410.png",
-              "https://i.postimg.cc/SsLtZhbc/Code-Sprint.png"
-            ]} 
+              "https://i.postimg.cc/SsLtZhbc/Code-Sprint.png",
+              {
+                title: "RIFT '26 Hackathon – Participant",
+                issuer: "Physics Wallah Institute of Innovation",
+                year: "2026",
+                image: "https://i.postimg.cc/bYQ5zgpn/Screenshot-2026-02-28-205735.png"
+              },
+              {
+                title: "Hackwise 2.0 Selection Round",
+                issuer: "Sphere Hive – KVG College of Engineering",
+                year: "2026",
+                image: "https://i.postimg.cc/TPpSfX3r/Screenshot-2026-02-28-205052.png"
+              },
+              {
+                title: "RIFT '26 Hackathon – Unstop Freedom Festival",
+                issuer: "Physics Wallah Institute of Innovation",
+                year: "2026",
+                image: "https://i.postimg.cc/bYQ5zgpn/Screenshot-2026-02-28-205735.png"
+              }
+            ]}
           />
         </div>
       </section>
@@ -549,10 +567,10 @@ export default function Home() {
             <div>
               <SectionHeading title="Contact Me" subtitle="Establish secure connection" />
               <p className="text-muted-foreground mb-8">
-                Ready to collaborate on security projects or discuss potential opportunities? 
+                Ready to collaborate on security projects or discuss potential opportunities?
                 Send a secure transmission below.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
@@ -563,7 +581,7 @@ export default function Home() {
                     <p className="text-white">ashwinnethan07@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30">
                     <MapPin className="text-primary" />
@@ -575,9 +593,9 @@ export default function Home() {
                 </div>
 
                 <div className="flex gap-4 mt-8">
-                  <motion.a 
-                    href="https://github.com/Ashwinnethan64-maker" 
-                    target="_blank" 
+                  <motion.a
+                    href="https://github.com/Ashwinnethan64-maker"
+                    target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     aria-label="GitHub Profile"
@@ -585,9 +603,9 @@ export default function Home() {
                   >
                     <Github size={24} />
                   </motion.a>
-                  <motion.a 
-                    href="https://www.linkedin.com/in/ashwin-nethan-a59259366/" 
-                    target="_blank" 
+                  <motion.a
+                    href="https://www.linkedin.com/in/ashwin-nethan-a59259366/"
+                    target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     aria-label="LinkedIn Profile"
@@ -598,7 +616,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-secondary/20 p-8 rounded-2xl border border-white/5 backdrop-blur-sm">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -635,18 +653,18 @@ export default function Home() {
                       <FormItem>
                         <FormLabel className="text-primary/80 font-mono text-xs uppercase">Transmission</FormLabel>
                         <FormControl>
-                          <Textarea 
-                            placeholder="TYPE MESSAGE..." 
-                            {...field} 
-                            className="bg-background/50 border-white/10 focus:border-primary font-mono min-h-[120px]" 
+                          <Textarea
+                            placeholder="TYPE MESSAGE..."
+                            {...field}
+                            className="bg-background/50 border-white/10 focus:border-primary font-mono min-h-[120px]"
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <CyberButton 
-                    type="submit" 
+                  <CyberButton
+                    type="submit"
                     className="w-full"
                     disabled={isSubmitting}
                   >
