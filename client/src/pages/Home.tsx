@@ -541,7 +541,7 @@ export default function Home() {
                 title: "RIFT '26 Hackathon – Participant",
                 issuer: "Physics Wallah Institute of Innovation",
                 year: "2026",
-                image: "https://i.postimg.cc/bYQ5zgpn/Screenshot-2026-02-28-205735.png"
+                image: "https://i.postimg.cc/tCjsLq49/RIFT26-Certificate-Ashwin-Nethan.jpg"
               },
               {
                 title: "Hackwise 2.0 Selection Round",
