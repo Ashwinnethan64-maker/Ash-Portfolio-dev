@@ -18,6 +18,7 @@ import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase,
 import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import AntiGravityExperience from "@/components/AntiGravityExperience";
 
 export default function Home() {
   const { toast } = useToast();
@@ -146,6 +147,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Anti-gravity floating shapes — fixed behind everything */}
+      <AntiGravityExperience />
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-background/80 backdrop-blur-md border-b border-white/5">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
