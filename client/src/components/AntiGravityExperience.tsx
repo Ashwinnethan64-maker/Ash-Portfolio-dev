@@ -243,7 +243,7 @@ export default function AntiGravityExperience() {
             style={{
                 position: "fixed",
                 inset: 0,
-                zIndex: -1,
+                zIndex: 1,
                 pointerEvents: "none",
                 overflow: "hidden",
                 perspective: "800px",

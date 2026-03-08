@@ -561,13 +561,13 @@ export default function Home() {
               },
               {
                 title: "Vibeathon Participation",
-                issuer: "Vibeathon / Yenepoya School of Technology & Engineering",
+                issuer: "Vibethon / Polaris School of Technology",
                 year: "2025",
                 image: "https://i.postimg.cc/KYR6Tghr/Screenshot-2025-11-26-184410.png"
               },
               {
                 title: "CodeSprint Hackathon Participation",
-                issuer: "Yenepoya School of Engineering & Technology",
+                issuer: "Code Sprint / St. Aloysius Deemed to be University",
                 year: "2026",
                 image: "https://i.postimg.cc/SsLtZhbc/Code-Sprint.png"
               },
