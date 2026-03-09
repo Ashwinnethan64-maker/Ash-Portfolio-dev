@@ -23,6 +23,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 export default function Home() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const statusLabels = [
     { id: 'status', name: 'System Status: ONLINE', color: '#22c55e', animate: true },
@@ -53,10 +54,7 @@ export default function Home() {
       'dhbIsX5kyNPUd1xWb'
     )
       .then(() => {
-        toast({
-          title: "Transmission Received",
-          description: "Your message has been securely sent. I'll get back to you soon.",
-        });
+        setIsSuccess(true);
         form.reset();
       })
       .catch((error) => {
@@ -651,60 +649,82 @@ export default function Home() {
             </div>
 
             <div className="bg-secondary/20 p-8 rounded-2xl border border-white/5 backdrop-blur-sm">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary/80 font-mono text-xs uppercase">Identity</FormLabel>
-                        <FormControl>
-                          <Input placeholder="ENTER NAME" {...field} className="bg-background/50 border-white/10 focus:border-primary font-mono" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary/80 font-mono text-xs uppercase">Return Address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="ENTER EMAIL" {...field} className="bg-background/50 border-white/10 focus:border-primary font-mono" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-primary/80 font-mono text-xs uppercase">Transmission</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="TYPE MESSAGE..."
-                            {...field}
-                            className="bg-background/50 border-white/10 focus:border-primary font-mono min-h-[120px]"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <CyberButton
-                    type="submit"
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Transmitting..." : "Send Transmission"}
+              {isSuccess ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col items-center justify-center text-center py-12 space-y-6"
+                >
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30 shadow-[0_0_15px_rgba(0,243,255,0.2)]">
+                    <Shield className="w-8 h-8 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white font-display mb-2">Message Sent!</h3>
+                    <p className="text-muted-foreground font-mono">
+                      I'll get back to you within 24 hours.
+                    </p>
+                  </div>
+                  <CyberButton variant="outline" size="sm" onClick={() => setIsSuccess(false)} className="mt-8">
+                    Back
                   </CyberButton>
-                </form>
-              </Form>
+                </motion.div>
+              ) : (
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-primary/80 font-mono text-xs uppercase">Identity</FormLabel>
+                          <FormControl>
+                            <Input placeholder="ENTER NAME" {...field} className="bg-background/50 border-white/10 focus:border-primary font-mono" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-primary/80 font-mono text-xs uppercase">Return Address</FormLabel>
+                          <FormControl>
+                            <Input placeholder="ENTER EMAIL" {...field} className="bg-background/50 border-white/10 focus:border-primary font-mono" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-primary/80 font-mono text-xs uppercase">Transmission</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="TYPE MESSAGE..."
+                              {...field}
+                              className="bg-background/50 border-white/10 focus:border-primary font-mono min-h-[120px]"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <CyberButton
+                      type="submit"
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Transmitting..." : "Send Transmission"}
+                    </CyberButton>
+                  </form>
+                </Form>
+              )}
             </div>
           </div>
         </div>
