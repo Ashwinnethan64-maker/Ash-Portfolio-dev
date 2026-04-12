@@ -529,41 +529,52 @@ export default function Home() {
 
       {/* Certificate Lightbox Modal */}
       <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-4xl bg-background/95 border-primary/30 p-0 overflow-hidden backdrop-blur-xl">
+        <DialogContent className="max-w-[100vw] w-screen h-screen md:max-w-none bg-black/90 border-none p-0 overflow-hidden flex items-center justify-center backdrop-blur-md z-[999] [&>button]:hidden">
           {selectedCert && (
-            <div className="relative group p-2">
+            <div className="relative w-full h-full flex flex-col items-center justify-center p-4 md:p-8">
               <DialogTitle className="sr-only">{selectedCert.title}</DialogTitle>
               <DialogDescription className="sr-only">{selectedCert.issuer}</DialogDescription>
               
-              <div className="relative flex flex-col items-center">
-                <div className="w-full aspect-auto max-h-[75vh] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
+              {/* Floating Close Button - Always Visible */}
+              <button 
+                onClick={() => setSelectedCert(null)}
+                className="fixed top-6 right-6 z-[9999] p-3 rounded-full bg-black/60 hover:bg-black/80 text-white border border-white/20 transition-all backdrop-blur-md shadow-2xl group active:scale-95"
+                title="Close Lightbox"
+              >
+                <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+
+              {/* Image Container with Responsive Sizing */}
+              <div className="relative flex flex-col items-center max-w-[95%] max-h-[80vh] md:max-w-[85%] md:max-h-[85vh] transition-all duration-500 animate-in zoom-in-95 fade-in">
+                <div className="rounded-xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                   <img
                     src={selectedCert.image}
                     alt={selectedCert.title || "Certificate"}
-                    className="w-full h-full object-contain bg-black/40"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
                 
-                <div className="w-full p-6 bg-gradient-to-t from-background to-transparent">
-                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white font-display mb-1">{selectedCert.title}</h3>
-                      <p className="text-primary font-mono text-sm">{selectedCert.issuer}</p>
-                    </div>
+                {/* Information Overlay (Optional/Minimal) */}
+                <div className="mt-6 text-center space-y-1">
+                  <h3 className="text-xl md:text-2xl font-bold text-white font-display tracking-tight">
+                    {selectedCert.title}
+                  </h3>
+                  <div className="flex items-center justify-center gap-3">
+                    <p className="text-primary font-mono text-xs md:text-sm uppercase tracking-widest">{selectedCert.issuer}</p>
                     {selectedCert.year && (
-                      <span className="px-3 py-1 bg-primary/10 text-primary rounded border border-primary/20 text-xs font-mono">
-                        ISSUED: {selectedCert.year}
-                      </span>
+                      <>
+                        <span className="w-1 h-1 rounded-full bg-white/30" />
+                        <span className="text-white/50 font-mono text-xs uppercase tracking-widest">{selectedCert.year}</span>
+                      </>
                     )}
                   </div>
                 </div>
-
-
               </div>
             </div>
           )}
         </DialogContent>
       </Dialog>
+
 
 
       {/* Certifications Section */}
