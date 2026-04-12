@@ -1,4 +1,3 @@
-import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
@@ -61,6 +60,16 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Load environment variables for local development
+  if (process.env.NODE_ENV !== "production") {
+    try {
+      const dotenv = await import("dotenv");
+      dotenv.config();
+    } catch (e) {
+      // dotenv might not be available in some environments, which is fine
+    }
+  }
+
   await registerRoutes(httpServer, app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
