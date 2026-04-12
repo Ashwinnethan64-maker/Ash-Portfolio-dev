@@ -9,30 +9,30 @@
   --font-mono: 'Share Tech Mono', monospace;
   --font-body: 'Rajdhani', sans-serif;
 
-  /* Cyber/Hacker Palette - Black/Navy base with Neon Blue/Cyan accents */
-  --background: 222 47% 6%;      /* Deepest Navy/Black */
-  --foreground: 210 40% 98%;     /* Off-white text */
+  /* Cyber/Hacker Palette - Next-Level Cyberpunk Theme */
+  --background: 222 84% 5%;      /* #020617 - Deep Space Black */
+  --foreground: 214 31% 91%;     /* #E2E8F0 - Premium Off-white */
   
-  --primary: 180 100% 50%;       /* Neon Cyan */
-  --primary-foreground: 222 47% 11%;
+  --primary: 182 100% 50%;       /* #00F5FF - Neon Cyan */
+  --primary-foreground: 222 84% 5%;
   
-  --secondary: 217 33% 17%;      /* Dark Gray/Blue for cards */
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 223 49% 8%;       /* #0B1120 - Dark Blue-Black Panel */
+  --secondary-foreground: 214 31% 91%;
   
-  --muted: 217 33% 12%;          /* Muted background */
-  --muted-foreground: 215 20% 65%;
+  --muted: 223 49% 6%;           /* Even darker navy */
+  --muted-foreground: 215 20% 65%; /* #94A3B8 - Text Secondary */
   
-  --accent: 262 83% 58%;         /* Purple accent for gradients */
-  --accent-foreground: 210 40% 98%;
+  --accent: 271 92% 65%;         /* #A855F7 - Neon Purple Highlight */
+  --accent-foreground: 214 31% 91%;
   
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
   
-  --border: 217 33% 20%;
-  --input: 217 33% 20%;
-  --ring: 180 100% 50%;
+  --border: 182 100% 50% / 0.15; /* Glass effect cyan border */
+  --input: 223 49% 12%;
+  --ring: 182 100% 50%;
   
-  --radius: 0.25rem; /* Angular corners fit the cyber theme */
+  --radius: 0.25rem;
 }
 
 @layer base {
@@ -40,25 +40,27 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary;
     font-family: var(--font-body);
     background-image: 
-      radial-gradient(circle at 50% 0%, hsla(180, 100%, 50%, 0.05) 0%, transparent 50%),
-      linear-gradient(rgba(10, 20, 30, 0.9), rgba(10, 20, 30, 0.9)),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300ffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      radial-gradient(circle at 50% 0%, hsla(182, 100%, 50%, 0.08) 0%, transparent 50%),
+      linear-gradient(rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.95)),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f5ff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     @apply tracking-wide uppercase;
+    text-shadow: 0 0 10px hsla(var(--primary), 0.2);
   }
 }
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 10px hsla(var(--primary), 0.5), 0 0 20px hsla(var(--primary), 0.3);
+    text-shadow: 0 0 10px #00F5FF, 0 0 20px rgba(0,245,255,0.5);
   }
   
   .border-glow {
-    box-shadow: 0 0 10px hsla(var(--primary), 0.2), inset 0 0 5px hsla(var(--primary), 0.1);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.15), inset 0 0 5px rgba(0, 245, 255, 0.05);
   }
+
   
   .cyber-grid {
     background-size: 40px 40px;

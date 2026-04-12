@@ -13,9 +13,11 @@ import { Terminal } from "@/components/Terminal";
 import { CyberButton } from "@/components/CyberButton";
 import { SectionHeading } from "@/components/SectionHeading";
 import LabelBadge from "@/components/ui/label-badges";
-import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart, Download } from "lucide-react";
+import { Shield, Cpu, Terminal as TerminalIcon, Award, GraduationCap, Briefcase, Mail, MapPin, Linkedin, Github, Globe, Search, BarChart, Download, X } from "lucide-react";
 
-import { ImageAutoSlider } from "@/components/ui/image-auto-slider";
+
+import { ImageAutoSlider, type CertificateItem } from "@/components/ui/image-auto-slider";
+
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -27,7 +29,7 @@ export default function Home() {
 
   const statusLabels = [
     { id: 'status', name: 'System Status: ONLINE', color: '#22c55e', animate: true },
-    { id: 'internship', name: 'Available for Internship', color: '#00f3ff' }
+    { id: 'internship', name: 'Available for Internship', color: '#00F5FF' }
   ];
 
   const form = useForm({
@@ -142,6 +144,8 @@ export default function Home() {
   ];
 
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
+
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -167,7 +171,7 @@ export default function Home() {
                 to={item.to}
                 smooth={true}
                 spy={true}
-                activeClass="text-primary font-bold drop-shadow-[0_0_8px_rgba(0,243,255,0.6)]"
+                activeClass="text-primary font-bold drop-shadow-[0_0_10px_rgba(0,245,255,0.6)]"
                 className="font-mono text-sm text-muted-foreground hover:text-primary cursor-pointer transition-colors uppercase tracking-wider"
               >
                 {item.name}
@@ -191,7 +195,7 @@ export default function Home() {
           >
             <LabelBadge labels={statusLabels} className="mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Ashwin <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Nethan</span>
+              Ashwin <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#3B82F6]">Nethan</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-light">
               Cybersecurity Student | Aspiring Analyst | Ethical Hacker
@@ -393,7 +397,7 @@ export default function Home() {
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, ease: "easeOut" }}
-                          className="h-full bg-primary shadow-[0_0_10px_rgba(0,243,255,0.5)]"
+                          className="h-full bg-primary shadow-[0_0_10px_rgba(0,245,255,0.5)]"
                         />
                       </div>
                     </div>
@@ -415,7 +419,7 @@ export default function Home() {
               <motion.div
                 key={project.id}
                 whileHover={{ scale: 1.03 }}
-                className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col cursor-pointer hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all duration-300"
+                className="cyber-card group p-0 rounded-xl overflow-hidden h-full flex flex-col cursor-pointer hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,245,255,0.2)] transition-all duration-300"
                 onClick={() => {
                   if (project.url) {
                     window.open(project.url, "_blank", "noopener,noreferrer");
@@ -523,6 +527,45 @@ export default function Home() {
         </DialogContent>
       </Dialog>
 
+      {/* Certificate Lightbox Modal */}
+      <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
+        <DialogContent className="max-w-4xl bg-background/95 border-primary/30 p-0 overflow-hidden backdrop-blur-xl">
+          {selectedCert && (
+            <div className="relative group p-2">
+              <DialogTitle className="sr-only">{selectedCert.title}</DialogTitle>
+              <DialogDescription className="sr-only">{selectedCert.issuer}</DialogDescription>
+              
+              <div className="relative flex flex-col items-center">
+                <div className="w-full aspect-auto max-h-[75vh] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
+                  <img
+                    src={selectedCert.image}
+                    alt={selectedCert.title || "Certificate"}
+                    className="w-full h-full object-contain bg-black/40"
+                  />
+                </div>
+                
+                <div className="w-full p-6 bg-gradient-to-t from-background to-transparent">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white font-display mb-1">{selectedCert.title}</h3>
+                      <p className="text-primary font-mono text-sm">{selectedCert.issuer}</p>
+                    </div>
+                    {selectedCert.year && (
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded border border-primary/20 text-xs font-mono">
+                        ISSUED: {selectedCert.year}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+
       {/* Certifications Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
@@ -531,7 +574,9 @@ export default function Home() {
 
         <div className="mt-12">
           <ImageAutoSlider
+            onImageClick={(cert) => setSelectedCert(cert)}
             images={[
+
               {
                 title: "Google AI for K12 Educators",
                 issuer: "Google for Education",

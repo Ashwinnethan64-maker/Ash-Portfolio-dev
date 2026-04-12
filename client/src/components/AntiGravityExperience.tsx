@@ -48,7 +48,7 @@ function ShapeRenderer({
     shape: Shape;
     offset: { x: number; y: number };
 }) {
-    const glowRgb = shape.color === "cyan" ? "0, 255, 255" : "123, 47, 190";
+    const glowRgb = shape.color === "cyan" ? "0, 245, 255" : "168, 85, 247";
     const boxShadow = `0 0 12px rgba(${glowRgb}, 0.6), 0 0 35px rgba(${glowRgb}, 0.25), inset 0 0 12px rgba(${glowRgb}, 0.1)`;
     const borderColor = `rgba(${glowRgb}, 0.65)`;
 

@@ -1,11 +1,17 @@
-import { ButtonHTMLAttributes, forwardRef } from "react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { forwardRef, ReactNode } from "react";
 
-interface CyberButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+
+import { cn } from "@/lib/utils";
+import { motion, HTMLMotionProps } from "framer-motion";
+
+
+interface CyberButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
+  children?: ReactNode;
 }
+
+
 
 export const CyberButton = forwardRef<HTMLButtonElement, CyberButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
@@ -13,7 +19,7 @@ export const CyberButton = forwardRef<HTMLButtonElement, CyberButtonProps>(
     const baseStyles = "relative font-mono font-bold tracking-wider uppercase transition-all duration-200 overflow-hidden group";
     
     const variants = {
-      primary: "bg-primary/10 text-primary border border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(0,255,255,0.4)]",
+      primary: "bg-primary/10 text-primary border border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_20px_rgba(0,245,255,0.4)]",
       outline: "bg-transparent text-foreground border border-white/20 hover:border-primary hover:text-primary hover:bg-primary/5",
       ghost: "bg-transparent text-muted-foreground hover:text-primary hover:bg-primary/5",
     };

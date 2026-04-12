@@ -58,26 +58,29 @@ export function Terminal() {
           <div className="w-3 h-3 rounded-full bg-red-500/80" />
           <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
           <div className="w-3 h-3 rounded-full bg-green-500/80" />
-          <span className="ml-2 text-xs font-mono text-primary/70">ashwin@terminal</span>
+          <span className="ml-2 text-[clamp(0.65rem,2vw,0.75rem)] font-mono text-primary/70">ashwin@terminal</span>
         </div>
-        <ExpandableTabs 
-          tabs={tabs} 
-          activeColor="text-primary" 
-          className="bg-transparent border-none p-0 h-8"
-          onChange={setActiveTab}
-        />
+        <div className="flex-shrink-0">
+          <ExpandableTabs 
+            tabs={tabs} 
+            activeColor="text-primary" 
+            className="bg-transparent border-none p-0 h-8"
+            onChange={setActiveTab}
+          />
+        </div>
+
       </div>
-      <div className="p-4 font-mono text-sm h-[200px] overflow-y-auto">
+      <div className="p-4 font-mono text-[clamp(0.75rem,2.5vw,0.875rem)] leading-relaxed h-[200px] overflow-y-auto">
         <AnimatePresence mode="popLayout">
           {lines.map((line, i) => (
             <motion.div 
               key={`${activeTab}-${i}`}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
-              className="mb-1 text-green-400"
+              className="mb-2 text-primary flex items-start gap-2 break-words"
             >
-              <span className="text-primary mr-2">➜</span>
-              {line}
+              <span className="text-primary flex-shrink-0 mt-0.5">➜</span>
+              <span className="flex-1 min-w-0">{line}</span>
             </motion.div>
           ))}
         </AnimatePresence>
@@ -88,5 +91,6 @@ export function Terminal() {
         />
       </div>
     </div>
+
   );
 }

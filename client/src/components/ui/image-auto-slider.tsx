@@ -10,7 +10,14 @@ export interface CertificateItem {
 
 type SliderInput = string | CertificateItem;
 
-export const ImageAutoSlider = ({ images }: { images: SliderInput[] }) => {
+export const ImageAutoSlider = ({
+  images,
+  onImageClick,
+}: {
+  images: SliderInput[];
+  onImageClick?: (item: CertificateItem) => void;
+}) => {
+
   // Normalize inputs to CertificateItem objects
   const normalizedImages: CertificateItem[] = images.map((item) =>
     typeof item === 'string' ? { image: item } : item
@@ -79,7 +86,8 @@ export const ImageAutoSlider = ({ images }: { images: SliderInput[] }) => {
               <div
                 key={index}
                 className="image-item flex-shrink-0 w-64 h-40 md:w-80 md:h-48 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative cursor-pointer"
-                onClick={() => window.open(cert.image, '_blank', 'noopener,noreferrer')}
+                onClick={() => onImageClick?.(cert)}
+
               >
                 <img
                   src={cert.image}
