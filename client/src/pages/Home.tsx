@@ -41,35 +41,39 @@ export default function Home() {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setIsSubmitting(true);
+    console.log('Starting EmailJS transmission with data:', data);
 
-    emailjs.send(
-      'service_x08b4vh',
-      'template_gr3m1qe',
-      {
-        from_name: data.name,
-        from_email: data.email,
-        message: data.message,
-        to_name: "Ashwin",
-      },
-      'dhbIsX5kyNPUd1xWb'
-    )
-      .then(() => {
-        setIsSuccess(true);
-        form.reset();
-      })
-      .catch((error) => {
-        console.error('EmailJS Error:', error);
-        toast({
-          title: "Transmission Failed",
-          description: "There was an error sending your message. Please try again later.",
-          variant: "destructive",
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+    try {
+      const result = await emailjs.send(
+        'service_yg7u729',
+        'template_4kg6r15',
+        {
+          from_name: data.name,
+          from_email: data.email,
+          message: data.message,
+        },
+        'dhbIsX5kyNPUd1xWb'
+      );
+
+      console.log('EmailJS Success:', result.status, result.text);
+      setIsSuccess(true);
+      toast({
+        title: "Transmission Successful",
+        description: "Your message has been sent to the command center.",
       });
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        title: "Transmission Failed",
+        description: "There was an error sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const education = [
