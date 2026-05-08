@@ -136,7 +136,7 @@ export default function Home() {
       subtitle: "Sustainable Agriculture & Supply Chain Security",
       desc: "An innovative platform focused on securing agricultural supply chains using blockchain and AI for threat detection.",
       image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=800&q=80",
-      url: "https://agronova-app.vercel.app/",
+      url: "https://www.agronova.in/",
       proof: [
         "Implemented end-to-end encryption for farmer-to-consumer communication.",
         "Integrated AI models to detect anomalies in supply chain logistics.",
